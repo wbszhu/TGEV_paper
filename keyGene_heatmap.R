@@ -30,3 +30,21 @@ pheatmap(log10(df1+0.001),
 #WSCD1   0.83    0.68    1.27    1.76    1.67    1.53
 #IL22RA1 1.19    1.69    1.89    6.92    16.63   6.50
 #CYP1A1  3.46    4.08    3.13    18.18   11.55   13.45
+
+
+######
+#breaksList = seq(-3, 2, by = 0.5)
+#pheatmap(log10(df1+0.001), 
+#         cluster_rows=F, 
+#         cluster_cols=T, 
+#         color = colorRampPalette(rev(brewer.pal(n = 11, name = "RdYlBu")))(length(breaksList)),
+#         legend = TRUE,
+#         breaks = breaksList,
+#         legend_breaks = c(-2, -1, 0, 1, 2, max(log10(df1+0.001))),
+#         legend_labels = c("-2", "-1", "0", "1", "2", "title"),
+#         labels_row = labels,
+#         display_numbers = TRUE,
+#         number_color = "grey",
+#         border_color = "white",
+#         fontsize = 20
+#)
