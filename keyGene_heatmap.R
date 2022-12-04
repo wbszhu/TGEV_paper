@@ -2,8 +2,9 @@ df <- read.csv("C:\\Users\\luzhang\\Desktop\\key_tpm.csv", header=T, sep="\t")
 library("pheatmap")
 library("RColorBrewer")
 colors <- brewer.pal(9, "YlGnBu")
-genelist <- c('CCN1', 'FLRT3', 'DUSP5', 'MYC', "WSCD1",
-              'CITED2', 'HOXB6', 'PCK1', 'SCD', 'IL22RA1', 'CYP1A1') # 关注的基因
+genelist <- c("IL6", "IL6R","IL15","IFITM1","IFITM3","ANPEP", "MX1", "TNFRSF21","TNFRSF12A","TNFRSF12A", 
+              "TGFB1","TGFBR1","TNFSF4", "TNFRSF1B","TNFAIP3",
+              "TGFB2","TGFBR2")  # 关注的基因
 labels <- df$gene_id #设置label
 labels[!labels %in% genelist] <- "" #将除去关注的基因，都设置为空
 df1 <- df[c("TGEV_REP1", "TGEV_REP2", "TGEV_REP3", "WT_REP1", "WT_REP2", "WT_REP3")]#将需要去画图的列，提取出来
