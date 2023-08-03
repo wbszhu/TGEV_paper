@@ -1,1 +1,0 @@
-cat /data4/pzhou/03.jimi/ref/ref/Sus_scrofa.Sscrofa11.1.109.gtf | awk 'OFS="\t" {if ($3=="gene") {if ($7 == "+") {print $1,$4-2500,$4+1500,$10,$14,$7} else {print $1,$5-1500,$5+2500,$10,$14,$7}}}' | tr -d '";' | sort -k1,1V -k2,2n | awk 'NR==1 { $2 = 0 } $1 != "MT"' > pig109.promoter.bed
