@@ -1,4 +1,4 @@
-#设置工作路径
+#set work dir
 setwd("C:/Users/you/Desktop")
 TPM <- read.table("deseq2_Mock_VS_TGEV_TPM.txt",header = T,row.names = 1,sep = "\t")
 sample_cor <- cor(TPM)
@@ -16,16 +16,16 @@ heatmap <- pheatmap(sample_cor,
                     color = colorRampPalette(c("navy", "white", "firebrick3"))(100),
                     #color = colorRampPalette(c("green3", "white", "blue4"))(100),#换颜色
                     )
-#读入文件
+#read file
 Mock1 <- read.csv("C:/Users/you/Desktop/Mock/rep1PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
 Mock2 <- read.csv("C:/Users/you/Desktop/Mock/rep2PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
 Mock3 <- read.csv("C:/Users/you/Desktop/Mock/rep3PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
 TGEV1 <- read.csv("C:/Users/you/Desktop/TGEV/rep1PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
 TGEV2 <- read.csv("C:/Users/you/Desktop/TGEV/rep2PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
 TGEV3 <- read.csv("C:/Users/you/Desktop/TGEV/rep3PE_stranded_anno_rsem.genes.results",header=T,sep="\t")
-#取所需要的列
+#get tpm
 result <- cbind(Mock1[,c(1,7)],Mock2[,7],Mock3[,7],TGEV1[,7],TGEV2[,7],TGEV3[,7])
-#将第一列变为行名并且去除第一列
+#change row names
 row.names(result) <- result[,1]
 result <- result[,-1]
 names(result) <- c("Mock1","Mock2","Mock3","TGEV1","TGEV2","TGEV3")
@@ -34,6 +34,7 @@ result <- read.table("deseq2_Mock_VS_TGEV_read_counts.txt",header = T,sep ='\t')
 sample_cor <- cor(result)
 library(pheatmap)
 pdf("cor.pdf",width =5,height = 4)
+#rnaseq cor
 heatmap <- pheatmap(sample_cor,
                     cluster_rows = T,
                     cluster_cols = T,
@@ -47,7 +48,7 @@ heatmap <- pheatmap(sample_cor,
                   ) #color = colorRampPalette(c("green3", "white", "blue4"))(100),#换颜色
 dev.off()
 
-
+#hic cor
 pc1 <- read.table("total_rep_pc1.txt", sep="\t")
 colnames(pc1) <- c("Mock_rep1", "Mock_rep2", "TGEV_rep1", "TGEV_rep2")
 pc1_cor <- cor(pc1, method = "pearson", use = "pairwise.complete.obs")
