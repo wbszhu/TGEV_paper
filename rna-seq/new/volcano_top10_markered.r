@@ -1,10 +1,10 @@
-#读取差异分析结果文件
+#read DEGs analysis file
 res <- read.table("deseq2_all.txt",header = T,row.names = 1,sep = '\t')
-#读取up,down,NS基因列表
+#read DEGs list
 none <- read.table("deseq2_none_fc1_padj0.05.txt",header = T,row.names = 1,sep = '\t')
 up <- read.table("deseq2_up_fc1_padj0.05.txt",header = T,row.names = 1,sep = '\t')
 down <- read.table("deseq2_down_fc1_padj0.05.txt",header = T,row.names = 1,sep = '\t')
-#获取上述三种基因列表的SYMBOL
+#get SYMBOL
 #up
 up$ensembl_gene_id <- row.names(up)
 txt <- read.table("id_name_ENSEMBL.txt",header=F,sep="\t")
@@ -19,7 +19,7 @@ down_name <- down_name[order(down_name$pvalue),]
 none$ensembl_gene_id <- row.names(none)
 none_name <- merge(none,txt,by = "ensembl_gene_id")
 none_name <- none_name[order(none_name$pvalue),]
-#绘图
+#plot
 library(ggplot2)
 library(ggrepel)
 res <- res[!is.na(res$sig), ]
