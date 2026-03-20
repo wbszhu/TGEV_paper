@@ -1,0 +1,2 @@
+bedtools intersect -a WT_boundary.bed -b unchanged_bd/wt_unchanged_bd.bed -v > changed_bd/wt_changed_bd.bed
+bedtools intersect -a PI_boundary.bed -b unchanged_bd/pi_unchanged_bd.bed -v > changed_bd/pi_changed_bd.bed
