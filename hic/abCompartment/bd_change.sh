@@ -11,6 +11,6 @@ bedtools intersect -a ACE2-SARS-CoV2_${rep}.cha_tad.bed -b ${rep}_bd_change.bed 
 
 for i in ACE2-SARS-CoV2 Mock
 do
-bedtools intersect -a ~/22.genome/GRCh37/hg19.promoter.bed -b ${i}_${rep}.Tcha_tad.bed -wa -u  > ${i}_${rep}.chaLinkG.txt
+bedtools intersect -a /path/to/genome/GRCh37/hg19.promoter.bed -b ${i}_${rep}.Tcha_tad.bed -wa -u  > ${i}_${rep}.chaLinkG.txt
 done
 cat ACE2-SARS-CoV2_${rep}.chaLinkG.txt Mock_${rep}.chaLinkG.txt|sort -u  > chaLinkG.txt

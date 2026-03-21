@@ -3,15 +3,15 @@ library("pheatmap")
 library("RColorBrewer")
 colors <- brewer.pal(9, "YlGnBu")
 genelist <- c('CCN1', 'FLRT3', 'DUSP5', 'MYC', "WSCD1",
-              'CITED2', 'HOXB6', 'PCK1', 'SCD', 'IL22RA1', 'CYP1A1') # 关注的基因
-labels <- df$gene_id #设置label
-labels[!labels %in% genelist] <- "" #将除去关注的基因，都设置为空
-df1 <- df[c("TGEV_REP1", "TGEV_REP2", "TGEV_REP3", "WT_REP1", "WT_REP2", "WT_REP3")]#将需要去画图的列，提取出来
+              'CITED2', 'HOXB6', 'PCK1', 'SCD', 'IL22RA1', 'CYP1A1') # Genes of interest
+labels <- df$gene_id #Set labels
+labels[!labels %in% genelist] <- "" #Set all genes except those of interest to blank
+df1 <- df[c("TGEV_REP1", "TGEV_REP2", "TGEV_REP3", "WT_REP1", "WT_REP2", "WT_REP3")]#Extract columns needed for plotting
 pdf("key_tpm.pdf")
-pheatmap(log10(df1+0.001), 
-         cluster_rows=F, 
+pheatmap(log10(df1+0.001),
+         cluster_rows=F,
          color = colors,
-         cluster_cols=T, 
+         cluster_cols=T,
          labels_row = labels,
          legend_breaks = c(-2, -1, 0, 1, 2, max(log10(df1+0.001))),
          legend_labels = c("-2", "-1", "0", "1", "2", "log10(TPM)\n"),

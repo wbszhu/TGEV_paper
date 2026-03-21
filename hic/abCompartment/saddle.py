@@ -14,10 +14,10 @@ def saddle(npz, sampleid):
     saddle = np.load(npz, allow_pickle=True)
     x = saddle['saddledata'].shape
     y = x[0]-10
-    up1 = saddle['saddledata'][:10,:10]  #左 上三角
-    up2 = saddle['saddledata'][y:,:10] #右 上三角
-    down1 = saddle['saddledata'][:10,y:]  #左 下三角
-    down2 = saddle['saddledata'][y:,y:] #右 下三角
+    up1 = saddle['saddledata'][:10,:10]  # upper-left triangle
+    up2 = saddle['saddledata'][y:,:10] # upper-right triangle
+    down1 = saddle['saddledata'][:10,y:]  # lower-left triangle
+    down2 = saddle['saddledata'][y:,y:] # lower-right triangle
 
     up1_m = np.mean(up1)
     up2_m = np.mean(up2)

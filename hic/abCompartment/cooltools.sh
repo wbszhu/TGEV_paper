@@ -2,8 +2,8 @@ id=PI
 cf=${id}.balanceNoMTY.mcool
 res=100
 gd=susScr11
-fa=/public/home/luzhang/22.genome/susScr11_xy/Sus_scrofa.Sscrofa11.1.dna.toplevel.fa
-csz=/public/home/luzhang/22.genome/susScr11_xy/pig11.1_from_star_chrom.sizes_NoMTY
+fa=/path/to/genome/susScr11_xy/Sus_scrofa.Sscrofa11.1.dna.toplevel.fa
+csz=/path/to/genome/susScr11_xy/pig11.1_from_star_chrom.sizes_NoMTY
 
 echo "____binnify"
 cooltools genome binnify $csz ${res}000 > ${gd}_${res}kb.bed

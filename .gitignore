@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.Rhistory
+.RData
+.Rproj.user/
+*.bam
+*.bai
+*.mcool
+*.cool
+*.bw
+*.bigwig
+*.mat.gz

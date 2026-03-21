@@ -1,13 +1,13 @@
-df <- read.csv("C:\\Users\\luzhang\\Desktop\\TOP100_variable_tpm.txt", header=T, sep="\t")
+df <- read.csv("./TOP100_variable_tpm.txt", header=T, sep="\t")
 library("pheatmap")
 library("RColorBrewer")
 gene <- c()
-labels <- df$gene #设置label
-labels[!labels %in% genelist] <- "" #将除去关注的基因，都设置为空
-df1 <- df[c("WT_REP1", "WT_REP2", "WT_REP3", "TGEV_REP1", "TGEV_REP2", "TGEV_REP3")]#将需要去画图的列，提取出来
-pheatmap(log10(df1+0.001), 
-         cluster_rows=F, 
-         cluster_cols=T, 
+labels <- df$gene #Set labels
+labels[!labels %in% genelist] <- "" #Set all genes except those of interest to blank
+df1 <- df[c("WT_REP1", "WT_REP2", "WT_REP3", "TGEV_REP1", "TGEV_REP2", "TGEV_REP3")]#Extract columns needed for plotting
+pheatmap(log10(df1+0.001),
+         cluster_rows=F,
+         cluster_cols=T,
          labels_row = labels,
          color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
          legend_breaks = c(-3, -2, 1, 0, 1, 2, 3),

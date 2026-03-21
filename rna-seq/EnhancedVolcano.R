@@ -1,6 +1,6 @@
 library("EnhancedVolcano")
-res <- read.csv("F:\\01.data\\guanzhuang\\test.csv", sep="\t")
-pdf("F:\\01.data\\guanzhuang\\VOPL.pdf",width=10, height=10)
+res <- read.csv("./test.csv", sep="\t")
+pdf("./VOPL.pdf",width=10, height=10)
 EnhancedVolcano(res,
                 lab = as.character(res$X),
                 x = 'log2FoldChange',
@@ -21,7 +21,7 @@ EnhancedVolcano(res,
                 legendIconSize = 4.0,
                 drawConnectors = TRUE,
                 widthConnectors = 1.0,
-                colConnectors = 'black')               
+                colConnectors = 'black')
 
 dev.off()
 

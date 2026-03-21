@@ -6,7 +6,7 @@
 # --plotsize 5 4.2
 
 
-path=/public/home/luzhang/08.TGEV/02.results/hic/99.rep
+path=/path/to/project/02.results/hic/99.rep
 hicPlotDistVsCounts -m \
  ${path}/pig-WT_rep1.balance.mcool::/resolutions/100000 \
  ${path}/pig-WT_rep2.balance.mcool::/resolutions/100000 \

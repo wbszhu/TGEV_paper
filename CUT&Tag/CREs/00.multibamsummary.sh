@@ -1,5 +1,7 @@
-peak_path=/public/home/jingxu/03.chip-seq/101TGEV/05.pro_enh/01.promoter/pi_new
-bam_path=/public/home/jingxu/03.chip-seq/101TGEV/03.vis/03.deg_slm/00.bam
+DATA_DIR=/path/to/cutandtag/data/101TGEV
+
+peak_path=${DATA_DIR}/05.pro_enh/01.promoter/pi_new
+bam_path=${DATA_DIR}/03.vis/03.deg_slm/00.bam
 
 multiBamSummary BED-file \
  --BED ${peak_path}/pi43_p5q2.sort.bed \

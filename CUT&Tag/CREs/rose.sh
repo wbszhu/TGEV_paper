@@ -1,6 +1,8 @@
 sample=pi
-input_path=/public/home/jingxu/03.chip-seq/101TGEV/05.pro_enh/03.superEnh/${sample}
-output_path=/public/home/jingxu/03.chip-seq/101TGEV/05.pro_enh/03.superEnh/${sample}/se_results
+DATA_DIR=/path/to/cutandtag/data/101TGEV/05.pro_enh/03.superEnh
+
+input_path=${DATA_DIR}/${sample}
+output_path=${DATA_DIR}/${sample}/se_results
 
 python ROSE_main.py \
        -g SS11 \

@@ -1,58 +1,59 @@
-# <差异基因分析>
-# 1.判断是否有BiocManager包，若不存在则安装
-#options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))) #设置清华镜像，加速下载
+# <Differential gene analysis>
+# 1. Check if BiocManager package exists; install if not
+#options(repos=structure(c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))) #Set Tsinghua mirror to speed up downloads
 
 #if (!requireNamespace("BiocManager", quietly = TRUE))
 #  install.packages("BiocManager")
 #if (!requireNamespace("DESeq2", quietly = TRUE))
-#  BiocManager::install('DESeq2')  #通过BiocManager安装DESeq2 
-library(DESeq2) #加载library
+#  BiocManager::install('DESeq2')  #Install DESeq2 via BiocManager
+library(DESeq2) #Load library
 
-setwd("C:\\Users\\lzhang\\Desktop\\TGEV") #设置工作目录，所有输出文件保存于此
+setwd("./") #Set working directory; all output files will be saved here
 
-#输入数据要求
-# DEseq2要求输入数据是由整数组成的矩阵
-# DESeq2要求矩阵是没有标准化的
+#Input data requirements
+# DESeq2 requires an input matrix composed of integers
+# DESeq2 requires the matrix to be unnormalized
 
-##2.读入所有基因原始readscount表达矩阵，行为基因，列为样品
+##2. Read in the raw read count expression matrix for all genes (rows = genes, columns = samples)
 
-A <- read.table("C:\\Users\\lzhang\\Desktop\\TGEV\\rsem.merged.gene_counts.tsv", header = T, row.names = 1)
-B <- as.matrix(A) #转换成矩阵格式，保证都是数值
+A <- read.table("./rsem.merged.gene_counts.tsv", header = T, row.names = 1)
+B <- as.matrix(A) #Convert to matrix format to ensure all values are numeric
 
 #View(B)
-## 3.实验分组
-# 样品信息矩阵即上述代码中的colData，它的类型是一个dataframe（数据框），
-# 第一列是样品名称，第二列是样品的处理情况（对照还是处理等），即condition
+## 3. Experimental grouping
+# The sample information matrix (colData in the code above) is a dataframe,
+# where the first column is sample name and the second column is the treatment condition
+# (control or treatment, etc.), i.e., condition
 coldata <- read.table("sample_info.txt",header = T,row.names = 1)
 coldata <- coldata[, c("condition", "type")]
-#View(coldata)	#查看分组信息
+#View(coldata)	#View grouping information
 
-## 4.制作dds对象，构建差异基因分析所需的数据格式
+## 4. Create dds object; build the data format required for differential gene analysis
 dds <- DESeqDataSetFromMatrix(countData = B, colData = coldata, design = ~ condition);
 
-# countData = B，readscount矩阵
-# colData = coldata,分组信息，根据这个才能在2组之间比较
-# design = ~ condition，公式，表示按照condition进行分析
+# countData = B, read count matrix
+# colData = coldata, grouping information used for comparison between 2 groups
+# design = ~ condition, formula indicating analysis by condition
 
-## 5.差异分析结果
-dds <- DESeq(dds)	#正式进行差异分析
+## 5. Differential analysis results
+dds <- DESeq(dds)	#Perform differential analysis
 
-## 6.提取结果，在treated和untreated组进行比较
-res <- results(dds, contrast = c("condition", "WT", "PI")) 
-# results从DESeq分析中提取出一个结果表，从而给出样品的基本均值，log2倍变化，标准误差，测试统计量，p值和校整后的p值； 
-sum(res$padj < 0.05, na.rm = TRUE)	#统计padj小于0.05显著差异的基因
+## 6. Extract results; compare between treated and untreated groups
+res <- results(dds, contrast = c("condition", "WT", "PI"))
+# results extracts a results table from the DESeq analysis, providing base mean, log2 fold change, standard error, test statistic, p-value, and adjusted p-value for each gene
+sum(res$padj < 0.05, na.rm = TRUE)	#Count genes with padj < 0.05 (significantly differentially expressed)
 
-##8.过滤上调、下调基因
-filter_up <- subset(res, pvalue < 0.05 & log2FoldChange > 1) #过滤上调基因
-filter_down <- subset(res, pvalue < 0.05 & log2FoldChange < -1) #过滤下调基因
-filter_diff  <- subset(res, padj < 0.05)	#统计padj小于0.05显著差异的基因
+##8. Filter upregulated and downregulated genes
+filter_up <- subset(res, pvalue < 0.05 & log2FoldChange > 1) #Filter upregulated genes
+filter_down <- subset(res, pvalue < 0.05 & log2FoldChange < -1) #Filter downregulated genes
+filter_diff  <- subset(res, padj < 0.05)	#Filter genes with padj < 0.05 (significantly differentially expressed)
 
-print(paste('差异上调基因数量: ', nrow(filter_up)))  #打印上调基因数量
-print(paste('差异下调基因数量: ', nrow(filter_down)))  #打印下调基因数量
+print(paste('Number of upregulated DEGs: ', nrow(filter_up)))  #Print number of upregulated genes
+print(paste('Number of downregulated DEGs: ', nrow(filter_down)))  #Print number of downregulated genes
 
-##9.保存到文件
+##9. Save to file
 write.table(filter_diff, file = "./differential_gene.txt", sep = "\t") #log2FoldChange + pvalue + padj
-write.table(filter_up, file="./filter_up_gene.txt", quote = F, sep = "\t")  
+write.table(filter_up, file="./filter_up_gene.txt", quote = F, sep = "\t")
 write.table(filter_down, file="./filter_down_gene.txt", quote = F, sep = "\t")
 
 
@@ -69,7 +70,7 @@ EnhancedVolcano(res,
                 FCcutoff = 1 ,
                 colAlpha = 1,
                 col=c(' black','blue',' green','red1'),
-                
+
 )
 
 #----------------------------------------------------------
@@ -85,4 +86,4 @@ filter_diff <- cbind(ensembl_gene_id,filter_diff)
 colnames(filter_diff)[1]<-c("ensembl_gene_id")
 diff_name <-merge(filter_diff, pig_symbols, by="ensembl_gene_id")
 diff_name
-write.table(diff_name, file="./all_diff_genename.txt", quote = F, sep = "\t")  
+write.table(diff_name, file="./all_diff_genename.txt", quote = F, sep = "\t")
