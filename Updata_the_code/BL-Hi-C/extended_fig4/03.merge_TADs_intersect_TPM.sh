@@ -1,0 +1,1 @@
+bedtools intersect -a merge_tad.txt -b tpm_symbol.txt -wa -wb | cut -f 4-15 | sort -k1,1V -k2,2V -k3,3n | uniq > tmp
