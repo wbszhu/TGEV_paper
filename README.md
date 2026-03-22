@@ -1,14 +1,19 @@
 # TGEV
 
 Code for the study of Transmissible Gastroenteritis Virus (TGEV) infection
-effects on 3D genome organization and gene regulation in porcine cells.
+effects on 3D genome organization and gene regulation in PK-15 cells.
 
 ## Structure
 
-- `rna-seq/` — RNA-seq differential expression analysis
-- `CUT&Tag/` — CUT&Tag chromatin profiling (H3K27ac, H3K4me3, H3K27me3)
-- `hic/` — Hi-C 3D genome analysis (A/B compartments, TADs)
-- `withCrispr/` — CRISPR screening integration
+- `BL-Hi-C/` — BL-Hi-C chromatin interaction analysis
+- `CUT&Tag/` — CUT&Tag histone modification analysis
+- `RNA-seq/` — RNA-seq differential expression analysis
+- `rMATS/` — Alternative splicing analysis
+  - `fig6/` — GO/KEGG enrichment of differentially spliced genes
+- `withCrispr/` — Fig5: CRISPR screening integration
+  - `Hi-C/` — CRISPR and Hi-C data integration
+  - `RNA-seq/` — CRISPR and RNA-seq overlap analysis
+  - `CRISPR_analysis/` — CRISPR screening data processing and visualization
 
 ## Requirements
 

@@ -1,0 +1,3 @@
+#zcat /path/to/project/01.scripts/pig-PI-1.results/indexed_pairs/pig-PI-1.pairs.gz /path/to/project/01.scripts/pig-PI-3.results/indexed_pairs/pig-PI-3.pairs.gz /path/to/project/01.scripts/pig-PI-5.results/indexed_pairs/pig-PI-5.pairs.gz /path/to/project/01.scripts/pig-PI-7.results/indexed_pairs/pig-PI-7.pairs.gz |gzip - > pig-WT.pairs.gz
+
+zcat /path/to/project/01.scripts/pig-PI-9.results/indexed_pairs/pig-PI-9.pairs.gz  /path/to/project/01.scripts/pig-PI-11.results/indexed_pairs/pig-PI-11.pairs.gz /path/to/project/01.scripts/pig-PI-13.results/indexed_pairs/pig-PI-13.pairs.gz  /path/to/project/01.scripts/pig-PI-15.results/indexed_pairs/pig-PI-15.pairs.gz |gzip - > pig-PI.pairs.gz

@@ -1,1 +1,0 @@
-cat /public/home/jingxu/01.ref/Sscrofa101/Sus_scrofa.Sscrofa11.1.101.chr.gtf | awk 'OFS="\t" {if ($3=="gene") {if ($7 == "+") {print $1,$4-2500,$4+1500,$10,$14,$7} else {print $1,$5-1500,$5+2500,$10,$14,$7}}}' | tr -d '";' |sort -k1,1V -k2,2n > pig111.promoter.bed
