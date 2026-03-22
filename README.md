@@ -5,15 +5,18 @@ effects on 3D genome organization and gene regulation in PK-15 cells.
 
 ## Structure
 
-- `BL-Hi-C/` — BL-Hi-C chromatin interaction analysis
-- `CUT&Tag/` — CUT&Tag histone modification analysis
-- `RNA-seq/` — RNA-seq differential expression analysis
-- `rMATS/` — Alternative splicing analysis
-  - `fig6/` — GO/KEGG enrichment of differentially spliced genes
+- `RNA-seq/` — Fig1: RNA-seq differential expression analysis
+- `CUT&Tag/` — Fig1: CUT&Tag histone modification analysis
+- `BL-Hi-C/` — Fig2-4: BL-Hi-C chromatin interaction analysis
+  - `fig2/` — Compartment and integrated analysis
+  - `fig3/` — TAD and integrated analysis
+  - `fig4/` — Loop and integrated analysis
 - `withCrispr/` — Fig5: CRISPR screening integration
   - `Hi-C/` — CRISPR and Hi-C data integration
   - `RNA-seq/` — CRISPR and RNA-seq overlap analysis
   - `CRISPR_analysis/` — CRISPR screening data processing and visualization
+- `rMATS/` — Fig6: Alternative splicing analysis
+  - `fig6/` — GO/KEGG enrichment of differentially spliced genes
 
 ## Requirements
 
