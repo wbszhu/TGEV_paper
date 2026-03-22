@@ -66,9 +66,9 @@ if (any(CC_df1$p.adjust < 0.05, na.rm = TRUE)) {
 }
 
 pvalue_tab <- rbind(MF_df2,BP_df2,CC_df2)
-write.table(pvalue_tab, "./go_pvalue0.05/stableb_pvalue0.05_go.txt", sep = "\t", row.names = FALSE, quote=FALSE)
+write.table(pvalue_tab, "/path/to/hic/data/go_pvalue0.05/stableb_pvalue0.05_go.txt", sep = "\t", row.names = FALSE, quote=FALSE)
 
 padj_tab <- rbind(MF_df3,BP_df3,CC_df3)
 if (!is.null(padj_tab) && nrow(padj_tab) > 0) {
-  write.table(padj_tab, "./go_padj0.05/stableb_padj0.05_go.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+  write.table(padj_tab, "/path/to/hic/data/go_padj0.05/stableb_padj0.05_go.txt", sep = "\t", quote = FALSE, row.names = FALSE)
 }

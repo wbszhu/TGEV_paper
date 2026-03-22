@@ -1,4 +1,4 @@
-data <- read.table("E:/pig_TGEV_cut&tag/组图20250731/fig4/proximal_and_distal_h3k27ac/proximal_enhancer_h3k27ac_change.txt", sep = "\t", header = T)
+data <- read.table("/path/to/hic/project/fig4/proximal_and_distal_h3k27ac/proximal_enhancer_h3k27ac_change.txt", sep = "\t", header = T)
 data$Log2FC <- data$pi.k27ac_change-data$wt.k27ac_change
 
 library(ggplot2)

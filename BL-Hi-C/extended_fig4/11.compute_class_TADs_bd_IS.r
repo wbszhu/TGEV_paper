@@ -6,13 +6,13 @@ library(tidyr)
 # Read Control group data
 control_tad <- fread("wt_part1_bd.txt", col.names = c("chr", "start", "end")) %>%
   mutate(group = "Mock")
-control_is <- fread("E:/pig_TGEV_cut&tag/组图20250731/fig3/fig3d/WT_is.bedGraph", col.names = c("chr", "start", "end", "IS_score")) %>%
+control_is <- fread("/path/to/hic/project/fig3/fig3d/WT_is.bedGraph", col.names = c("chr", "start", "end", "IS_score")) %>%
   mutate(group = "Mock")
 
 # Read Infected group data
 infected_tad <- fread("pi_part1_bd.txt", col.names = c("chr", "start", "end")) %>%
   mutate(group = "TGEV")
-infected_is <- fread("E:/pig_TGEV_cut&tag/组图20250731/fig3/fig3d/PI_is.bedGraph", col.names = c("chr", "start", "end", "IS_score")) %>%
+infected_is <- fread("/path/to/hic/project/fig3/fig3d/PI_is.bedGraph", col.names = c("chr", "start", "end", "IS_score")) %>%
   mutate(group = "TGEV")
 
 # Merge data

@@ -1,1 +1,1 @@
-awk -F'\t' '{outfile = $8".txt"; print $0 > outfile}' ../merge_tad_bd_class.txt
+awk -F'\t' '{outfile = $8".txt"; print $0 > outfile}' /path/to/hic/data/merge_tad_bd_class.txt

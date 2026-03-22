@@ -2,13 +2,13 @@
 library(org.Hs.eg.db)
 library(ggplot2)
 library(clusterProfiler)
-gene_up <- read.table("deseq2_up_fc1_padj0.05.txt",header=T,sep="\t")
+gene_up <- read.table("/path/to/rnaseq/data/deseq2_up_fc1_padj0.05.txt",header=T,sep="\t")
 #conversion gene id and name
 gene_up$ensembl_id <- row.names(gene_up)
-trans <- read.table("id_name.txt",header = F,sep = "\t")
+trans <- read.table("/path/to/genome/id_name.txt",header = F,sep = "\t")
 colnames(trans) <- c("ensembl_id","gene_name")
 merge_all <- merge(gene_up,trans,by="ensembl_id")
-write.table(merge_all, "down_SYMBOL.csv", sep = ",", row.names = F)
+write.table(merge_all, "/path/to/rnaseq/data/up_SYMBOL.csv", sep = ",", row.names = F)
 #MF
 MF <- enrichGO(gene = merge_all$gene_name,  
                keyType = "SYMBOL",  
@@ -59,7 +59,7 @@ CC_df$type <- "CC"
 CC_df <- CC_df[,c(10,1:9)]
 #merge table
 all_tab <- rbind(MF_df,BP_df,CC_df)
-write.table(all_tab, "GO_Mock_VS_TGEV_up_human_pvalue0.05.csv", sep = ",", row.names = F)
+write.table(all_tab, "/path/to/rnaseq/data/GO_Mock_VS_TGEV_up_human_pvalue0.05.csv", sep = ",", row.names = F)
 #show top10
 MF_10 <- MF_df[1:10,]
 MF_10 <- MF_10[order(MF_10$Count,decreasing = FALSE),]
@@ -72,7 +72,7 @@ all_10 <- rbind(MF_10, BP_10, CC_10)
 all_10$Description <- as.character(all_10$Description)
 all_10$Description <- factor(all_10$Description,levels = c(all_10$Description)) #force convert to factor
 #plot
-pdf("GO_up(human).pdf",width = 9,height = 5)
+pdf("/path/to/rnaseq/data/GO_up(human).pdf",width = 9,height = 5)
 ggplot(all_10,aes(x=Description,y=Count,fill=type))+
   geom_bar(stat="identity")+
   labs(x="Description",y="Num of Genes",fill="Category",title = "NS's Most Enrich GO")+

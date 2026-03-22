@@ -1,6 +1,6 @@
 library(ggplot2)
 library(dplyr)
-setwd("E:/pig_TGEV_cut&tag/组图20250731/fig3/extended/rid")
+setwd("/path/to/hic/project/fig3/extended/rid")
 data <- read.table("h3k4me3_change.txt", sep="\t", header = T)
 data <- data[,c(4,5,6)]
 colnames(data) <- c('WT', 'PI', 'TADs')

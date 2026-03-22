@@ -4,7 +4,7 @@ library(cowplot)
 library(ggplot2)
 library(ggsignif)
 
-data <- read.table("E:/pig_TGEV_cut&tag/组图20250731/fig3/extended/boxplot/histone_change_signal.txt", sep="\t", header = F)
+data <- read.table("/path/to/hic/project/fig3/extended/boxplot/histone_change_signal.txt", sep="\t", header = F)
 colnames(data) <- c('chr', 'start', 'end', 'wt', 'pi', 'compartment', 'histone')
 
 data1 <- data[!(data$wt == 0 & data$pi == 0), ]

@@ -1,6 +1,5 @@
-#set work dir
-setwd("/path/to/rnaseq/data")
 #read input files
+setwd("/path/to/rnaseq/data")
 Mock1 <- read.csv("mock_rep1.results",header=T,sep="\t")
 Mock2 <- read.csv("mock_rep2.results",header=T,sep="\t")
 Mock3 <- read.csv("mock_rep3.results",header=T,sep="\t")
@@ -18,8 +17,8 @@ TPM <- TPM[,-1]
 #rename colnames
 names(read_counts) <- c("Mock1","Mock2","Mock3","TGEV1","TGEV2","TGEV3")
 names(TPM) <- c("Mock1","Mock2","Mock3","TGEV1","TGEV2","TGEV3")
-write.table(read_counts,file="/path/to/rnaseq/data/deseq2_Mock_VS_TGEV_read_counts.txt",row.names=TRUE, sep="\t", quote=FALSE)
-write.table(TPM,file="/path/to/rnaseq/data/deseq2_Mock_VS_TGEV_TPM.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(read_counts,file="deseq2_Mock_VS_TGEV_read_counts.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(TPM,file="deseq2_Mock_VS_TGEV_TPM.txt",row.names=TRUE, sep="\t", quote=FALSE)
 #remove low expressed gene
 read_counts <- read_counts[rowSums(read_counts) > 3,]
 #construct expression matrix
@@ -40,16 +39,16 @@ res <- data.frame(results(dds))
 res[which(res$log2FoldChange>=1 & res$padj<0.05),"sig"] <- "up"
 res[which(res$log2FoldChange<=-1 & res$padj<0.05),"sig"] <- "down"
 res[which(abs(res$log2FoldChange)<1 | res$padj>=0.05),"sig"] <- "none"
-write.table(res,file="/path/to/rnaseq/data/deseq2_all.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(res,file="deseq2_all.txt",row.names=TRUE, sep="\t", quote=FALSE)
 #output up and down
 up <- subset(res,sig=="up")
 down <- subset(res,sig=="down")
 none <- subset(res,sig=='none')
 res1_select <- subset(res,sig %in% c("up","down"))
-write.table(up,file="/path/to/rnaseq/data/deseq2_up_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
-write.table(down,file="/path/to/rnaseq/data/deseq2_down_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
-write.table(none,file="/path/to/rnaseq/data/deseq2_none_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
-write.table(res1_select,file="/path/to/rnaseq/data/DEGs.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(up,file="deseq2_up_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(down,file="deseq2_down_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(none,file="deseq2_none_fc2_p0.01.txt",row.names=TRUE, sep="\t", quote=FALSE)
+write.table(res1_select,file="DEGs.txt",row.names=TRUE, sep="\t", quote=FALSE)
 #conversion gene id and symbol
 up$ensembl_gene_id <- row.names(up)
 txt <- read.table("id_name_ENSEMBL.txt",header=F,sep="\t")

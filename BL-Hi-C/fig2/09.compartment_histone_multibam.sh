@@ -2,7 +2,7 @@ bam=/path/to/cutandtag/data/03.vis/03.deg_slm/00.bam
 
 for i in a2b b2a stablea stableb; do
 multiBamSummary BED-file \
-                --BED ../../figc/${i}.txt \
+                --BED /path/to/hic/project/figc/${i}.txt \
                 --bamfiles ${bam}/WT-H3K27ac_rep1.bam \
                            ${bam}/WT-H3K27ac_rep2.bam \
                            ${bam}/WT-H3K4me3_rep1.bam \

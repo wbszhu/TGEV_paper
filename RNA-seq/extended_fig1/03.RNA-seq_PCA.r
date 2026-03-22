@@ -1,7 +1,5 @@
-#set dir
-setwd("/path/to/rnaseq/data")
 #loading
-df <- read.table("deseq2_Mock_VS_TGEV_read_counts.txt",header = T,sep = "\t")
+df <- read.table("/path/to/rnaseq/data/deseq2_Mock_VS_TGEV_read_counts.txt",header = T,sep = "\t")
 head(df)
 #construct expression matrix
 count_matrix1 <- as.matrix(df)
@@ -24,7 +22,7 @@ percentVar <- round(100 * attr(pca_data, "percentVar"),2)
 #plot
 library(ggplot2)
 library(ggrepel)
-pdf("pca.pdf",width=6,height = 4)
+pdf("/path/to/rnaseq/data/pca.pdf",width=6,height = 4)
 ggplot(pca_data,aes(PC1,PC2,color=group))+
   geom_point(size=5)+
   scale_color_manual(values = c("#0e4e8b","#af4e47"))+

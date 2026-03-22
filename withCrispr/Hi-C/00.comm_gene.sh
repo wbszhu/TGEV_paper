@@ -1,4 +1,4 @@
-path=../00.rna-seq/
+path=/path/to/rnaseq/data/00.rna-seq/
 for i in TGEV_p0.01fc1chaLinkG TGEV_p0.05fc1chaLinkG
 do
 cat ${i}.txt |awk '{if($4=="ensembl") print $5; else print $4}'|grep -v geneN |sort > ${i}_gene

@@ -1,4 +1,4 @@
-setwd("/path/to/data")
+setwd("/path/to/TFs")
 df <- data.frame(
   Motif = c("Fos", "Fos", "Fra1", "Fra1",  'Fra2', "JunB", "JunB", "AP-1", "AP-1","Atf2", "Atf4", "Atf7", "IRF1", "IRF3", "IRF8"),
   Family = c("AP-1", "AP-1", "AP-1", "AP-1", "AP-1", "AP-1", "AP-1", "AP-1", "AP-1", "ATF", "ATF", "ATF", "IRF", "IRF", "IRF"),

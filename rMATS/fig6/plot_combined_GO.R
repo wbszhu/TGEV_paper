@@ -9,8 +9,8 @@ library(forcats)
 library(RColorBrewer)
 
 # Read GO results
-go_cc <- read.csv("enrichment_results/GO_results/GO_CC_enrichment.csv", stringsAsFactors = FALSE)
-go_mf <- read.csv("enrichment_results/GO_results/GO_MF_enrichment.csv", stringsAsFactors = FALSE)
+go_cc <- read.csv("/path/to/enrichment_results/GO_results/GO_CC_enrichment.csv", stringsAsFactors = FALSE)
+go_mf <- read.csv("/path/to/enrichment_results/GO_results/GO_MF_enrichment.csv", stringsAsFactors = FALSE)
 
 # Add category column
 go_cc$Category <- "Cellular Component"
@@ -78,14 +78,14 @@ p_combined <- ggplot(combined_top, aes(x = NegLog10P, y = Description_short, fil
 
 # Save plot
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_barplot.pdf",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_barplot.pdf",
     plot = p_combined,
     width = 10,
     height = 8
 )
 
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_barplot.png",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_barplot.png",
     plot = p_combined,
     width = 10,
     height = 8,
@@ -93,8 +93,8 @@ ggsave(
 )
 
 cat("Done: Combined barplot generated:\n")
-cat("  - enrichment_results/figures/GO_Combined_barplot.pdf\n")
-cat("  - enrichment_results/figures/GO_Combined_barplot.png\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_barplot.pdf\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_barplot.png\n")
 
 # ============================================================================
 # Optional: Create version with gene count
@@ -135,14 +135,14 @@ p_combined_bubble <- ggplot(combined_top,
 
 # Save bubble plot version
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_dotplot.pdf",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_dotplot.pdf",
     plot = p_combined_bubble,
     width = 11,
     height = 8
 )
 
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_dotplot.png",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_dotplot.png",
     plot = p_combined_bubble,
     width = 11,
     height = 8,
@@ -150,8 +150,8 @@ ggsave(
 )
 
 cat("Done: Combined dotplot generated:\n")
-cat("  - enrichment_results/figures/GO_Combined_dotplot.pdf\n")
-cat("  - enrichment_results/figures/GO_Combined_dotplot.png\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_dotplot.pdf\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_dotplot.png\n")
 
 # ============================================================================
 # Create faceted version (one panel per category)
@@ -181,14 +181,14 @@ p_facet <- ggplot(combined_top, aes(x = NegLog10P, y = fct_reorder(Description_s
 
 # Save faceted version
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_facet.pdf",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_facet.pdf",
     plot = p_facet,
     width = 10,
     height = 10
 )
 
 ggsave(
-    filename = "enrichment_results/figures/GO_Combined_facet.png",
+    filename = "/path/to/enrichment_results/figures/GO_Combined_facet.png",
     plot = p_facet,
     width = 10,
     height = 10,
@@ -196,7 +196,7 @@ ggsave(
 )
 
 cat("Done: Faceted barplot generated:\n")
-cat("  - enrichment_results/figures/GO_Combined_facet.pdf\n")
-cat("  - enrichment_results/figures/GO_Combined_facet.png\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_facet.pdf\n")
+cat("  - /path/to/enrichment_results/figures/GO_Combined_facet.png\n")
 
 cat("\nDone! Generated 3 types of combined visualization plots.\n")
